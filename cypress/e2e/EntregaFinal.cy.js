@@ -79,12 +79,12 @@ describe('Entrega Final', () => {
     productsPage.AgregarProducto(productosData.productos.producto2.name);
     productsPage.CerrarVentanaEmergente();
     productsPage.CarritoDeCompraButton();
-    shoppingCartPage.VerificarNombreProductos(productosData.productos.producto1.name).should('have.text' , 'Pink Sweater');
-    shoppingCartPage.VerificarNombreProductos(productosData.productos.producto2.name).should('have.text' , 'White Shoes');
+    shoppingCartPage.VerificarNombreProductos(productosData.productos.producto1.name).should('have.text' , productosData.productos.producto1.name);
+    shoppingCartPage.VerificarNombreProductos(productosData.productos.producto2.name).should('have.text' , productosData.productos.producto2.name);
     shoppingCartPage.VerificarPrecioProductos(productosData.productos.producto1.name).should('have.text' , '$18');
     shoppingCartPage.VerificarPrecioProductos(productosData.productos.producto2.name).should('have.text' , '$30');
     shoppingCartPage.ClickShowTotalPriceButton();
-    shoppingCartPage.VerificarPrecioDeLosProductos(productosData.productos.producto1.precio + productosData.productos.producto2.precio).should('have.text' , '48');
+    shoppingCartPage.VerificarPrecioDeLosProductos(productosData.productos.producto1.precio + productosData.productos.producto2.precio).should('have.text' , productosData.productos.producto1.precio + productosData.productos.producto2.precio);
     shoppingCartPage.ClickGoToCheckOutButton();
     checkoutPage.LlenarNombre(checkoutData.checkout.nombre);
     checkoutPage.LlenarApellido(checkoutData.checkout.apellido);
@@ -92,8 +92,8 @@ describe('Entrega Final', () => {
     checkoutPage.DarleClickalBotonPurchase();
     reciptPage.VerificarNombre({ timeout: constantes.TIMEOUT}).should('have.text' , 'maria semprun has succesfully purchased the following items');
     reciptPage.VerificarCardNumber().should('have.text' , '1234567890123456');
-    reciptPage.VerificarNombreProducto1(productosData.productos.producto1.name).should('have.text' , 'Pink Sweater');
-    reciptPage.VerificarNombreProducto2(productosData.productos.producto2.name).should('have.text' , 'White Shoes');
+    reciptPage.VerificarNombreProducto1(productosData.productos.producto1.name).should('have.text' , productosData.productos.producto1.name);
+    reciptPage.VerificarNombreProducto2(productosData.productos.producto2.name).should('have.text' , productosData.productos.producto2.name);
     reciptPage.VerificarPrecioDeProductos(productosData.productos.producto1.precio + productosData.productos.producto2.precio).should('have.text' , 'You have spent $48');
   });
   after('after' , () => {
